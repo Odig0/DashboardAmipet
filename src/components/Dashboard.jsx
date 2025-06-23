@@ -1,102 +1,42 @@
-import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
-import { PlusCircle, PawPrint, User, Package, AlertTriangle } from "lucide-react";
+import Navbar from './Navbar'
+import Card from './Card'
+import PieChart from './PieChart'
+import BarChart from './Barchart'
 
-
-const Dashboard = () => {
+export default function Dashboard() {
   return (
-    <div className="p-6 space-y-6">
-      {/* Título del Dashboard */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Panel de Control - AmiPet</h1>
-        <Button>
-          <PlusCircle className="mr-2 h-4 w-4" /> Agregar Producto
-        </Button>
-      </div>
+    <>
+      <Navbar />
+      <main className="px-6 py-4 bg-gray-100 min-h-screen">
+        {/* Encabezado */}
+        <h1 className="text-3xl font-semibold mb-6 text-gray-800">Panel General</h1>
 
-      {/* Estadísticas generales */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card>
-          <CardHeader className="flex items-center gap-4">
-            <Package />
-            <CardTitle>Productos</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">128</p>
-            <p className="text-sm text-muted-foreground">Cargados</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex items-center gap-4">
-            <User />
-            <CardTitle>Usuarios</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">452</p>
-            <p className="text-sm text-muted-foreground">Registrados</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex items-center gap-4">
-            <PawPrint />
-            <CardTitle>Mascotas</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">312</p>
-            <p className="text-sm text-muted-foreground">En sistema</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex items-center gap-4">
-            <AlertTriangle />
-            <CardTitle>Reportes</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">9</p>
-            <p className="text-sm text-muted-foreground">Mascotas perdidas</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Tabla de productos */}
-      <div className="mt-6">
-        <h2 className="text-xl font-semibold mb-4">Últimos Productos Cargados</h2>
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-sm">
-            <thead>
-              <tr className="bg-muted">
-                <th className="text-left p-2">Nombre</th>
-                <th className="text-left p-2">Categoría</th>
-                <th className="text-left p-2">Precio</th>
-                <th className="text-left p-2">Stock</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b">
-                <td className="p-2">Croquetas Premium</td>
-                <td className="p-2">Alimento</td>
-                <td className="p-2">Bs. 85</td>
-                <td className="p-2">25 unidades</td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-2">Collar con GPS</td>
-                <td className="p-2">Accesorios</td>
-                <td className="p-2">Bs. 230</td>
-                <td className="p-2">8 unidades</td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-2">Juguete Mordedor</td>
-                <td className="p-2">Juguetes</td>
-                <td className="p-2">Bs. 40</td>
-                <td className="p-2">35 unidades</td>
-              </tr>
-            </tbody>
-          </table>
+        {/* Métricas */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <Card title="Productos disponibles">
+            <p className="text-2xl font-bold text-center text-gray-700">186</p>
+          </Card>
+          <Card title="Productos vendidos hoy">
+            <p className="text-2xl font-bold text-center text-emerald-600">47</p>
+          </Card>
+          <Card title="Servicios agendados">
+            <p className="text-2xl font-bold text-center text-sky-600">12</p>
+          </Card>
+          <Card title="Ganancias del mes">
+            <p className="text-2xl font-bold text-center text-purple-700">Bs. 12.430</p>
+          </Card>
         </div>
-      </div>
-    </div>
-  );
-};
 
-export default Dashboard;
+        {/* Gráficos lado a lado */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card title="Distribución de inversión">
+            <PieChart />
+          </Card>
+          <Card title="Ventas por hora">
+            <BarChart />
+          </Card>
+        </div>
+      </main>
+    </>
+  )
+}
